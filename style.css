@@ -1,3 +1,11 @@
 :focus{
   color: #5C6AC4;
 }
+h1{
+  font-family: Tahoma, Sans-Serif, Monospace;
+}
+form{
+  background: blue;
+  color: white;
+  font-family: Tahoma, Sans-Serif, Monospace;
+}
