@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <body>
+      <h1>Show List of Students Who Signed Up</h1>
+      <p>by Marcus Carandang</p>
+      <a href="index.html">Back to Signups</a>
+      </br>
+      </br>
+      <label>
+            "Select Your Club"
+            <select id="club" name="club"> 
+                <option value="All">Select A Club</option>
+                <option value="All">All</option>
+                <option value="SCA">SCA</option>
+                <option value="Lagablab">Lagablab</option>
+                <option value="MTP">MTP</option>
+                <option value="Flux">Flux</option>
+                <option value="Aksis">Aksis</option>
+                <option value="Bake Club">Bake Club</option>
+            </select>
+      </label>
+      <p id="total">Total Signups: </p>
+      <table id="list">
+        
+      </table>
+      
+      <style>
+      td, th{
+        border: 1px solid;
+      }
+      table{
+        border: 3px solid;
+        border-collapse: collapse;
+        padding 20px;
+        text-align: left;
+      }
+      tr:nth-child(even) {background-color: #f2f2f2;}
+      </style>
+      <script>
+      function loadNotes() {// this is to load the data
+      const KEY = "notes";
+      const raw = localStorage.getItem(KEY); 
+
+      if (raw){
+        return JSON.parse(raw); // if there is saved data on the key "notes", parse and return it
+      }
+      else{
+        return []; // if none, return a blank array
+      }
+      }
+ 
+    let clubfilter = 'All';
+    let nofpageviews = 0;
+ 
+    // Render list to the page
+    function render() {
+      const notes = loadNotes();
+      const list = document.getElementById('list');
+      if (notes.length === 0) { // if there are no current save data, display no notes yet
+        list.innerHTML = '<tr><th colspan="9"><b>No signups yet</b></th></tr>';
+        return;
+      }
+      else{
+      let output =
+      `<tr>
+          <th>CLUB</th>
+           <th>STUDENT ID</th>
+           <th>FULLNAME</th>
+           <th>BIRTHDAY</th>
+           <th>EMAIL</td>
+           <th>MOBILE PHONE</th>
+           <th>GRADE LEVEL</th>
+           <th>INTERN/EXTERN</th>
+           <th><i>TIME SUBMITTED</i></th>
+         </tr>`;
+         
+      let existingsignups = 0;
+      let numberperclub = 0;
+      
+      for (let i = 0; i < notes.length; i++) { // once there is data, display it in a table
+        if ((clubfilter == "All")||(clubfilter == notes[i].club)){
+          numberperclub += 1;
+        }
+      }
+      
+      if (numberperclub != 0){
+      for (let i = 0; i < notes.length; i++) { // once there is data, display it in a table
+        if ((clubfilter == "All")||(clubfilter == notes[i].club)){
+        output += `<tr>
+           <td>${notes[i].club}</td>
+           <td>${notes[i].studentid}</td>
+           <td>${notes[i].fullname}</td>
+           <td>${notes[i].birthday}</td>
+           <td>${notes[i].email}</td>
+           <td>${notes[i].mphone}</td>
+           <td>${notes[i].gradelevel}</td>
+           <td>${notes[i].internextern}</td>
+           <td><i>${(notes[i].time)}</i></td>
+         </tr>`;
+        }
+      }}
+      else {
+          if ((existingsignups == 0)){
+          output = '<tr><th colspan="9"><b>No signups yet for this club.</b></th></tr>'
+          existingsignups += 1;
+          }
+      }
+      list.innerHTML = output;
+      }
+      existingsignups=0;
+      if (nofpageviews == 0){
+      total.innerHTML += notes.length;}
+      nofpageviews += 1;
+      
+    }
+    
+    render();
+    
+     document.getElementById('club').onclick = function(event) // filter out the students
+    {
+          
+        clubfilter = document.getElementById('club').value.trim();
+        render();
+        
+      }
+
+
+      </script>
+  </body>
+</html>
+
+
