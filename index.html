@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Student Regristration Form</title>
+    <title>Student Registration Form</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-      <h1>Student Regristration Form</h1>
+      <h1>Student Registration Form</h1>
       </br>
       </br>
-      <form id="dForm" action="submit" method="post">
+      <form id="dForm" method="get">
         <fieldset>
           <label>
             "StudentID"
-            <input type="number" name="studentid" id="studentid" required>
+            <input type="text" name="studentid" id="studentid" required>
           </label>
           </br>
           <label>
@@ -22,12 +22,12 @@
           </br>
           <label>
             "Birthday"
-            <input type="date" name="birthday" id="birthday" required>
+            <input type="text" name="birthday" id="birthday" required>
           </label>
           </br>
           <label>
             "Email Address"
-            <input type="email" name="email" id="email" required>
+            <input type="text" name="email" id="email" required>
           </label>
           </br>
         </fieldset>
@@ -52,34 +52,39 @@
           </br>
           <label>
             "Intern/Extern"
-            <input type="radio" name="ioe" value="intern">
+            <input id="ie" type="radio" name="ioe" value="intern">
             "Intern"
-            <input type="radio" name="ioe" value="extern">
+            <input id="ie" type="radio" name="ioe" value="extern">
             "Extern"
           </label>
           </br>
           <label>
             "Preferred Organization / Club"
-            <select id="gradelevel" name="gradelevel">
-                <option value="seven">SCA</option>
-                <option value="eight">Lagablab</option>
-                <option value="nine">MTP</option>
-                <option value="ten">Flux</option>
-                <option value="eleven">Aksis</option>
-                <option value="twelve">Bake Club</option>
+            <select id="club" name="club">
+                <option value="SCA">SCA</option>
+                <option value="Lagablab">Lagablab</option>
+                <option value="MTP">MTP</option>
+                <option value="Flux">Flux</option>
+                <option value="Aksis">Aksis</option>
+                <option value="Bake Club">Bake Club</option>
           </label>
           </br>
         </fieldset>
         <fieldset>
+          </br>
+          <p>Why do you want to join?</p>
           </br>
           <label>
             "Why do you want to join?"
             <input type="textarea" name="why" id="why" required>
           </label>
           </br>
-          <button type="submit" onclick="alert("submit!")"> Submit </button>
+          <button type="button" id="submit"> Submit </button>
           <input type="reset" value="Clear">
         </fieldset>
       </form>
+      <a href="page1.html">View Signups</a>
+      <script src="script.js"></script>
   </body>
 </html>
+
